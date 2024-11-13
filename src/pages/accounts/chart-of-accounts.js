@@ -64,6 +64,7 @@ const Chart_of_accounts = ()=> {
     const [chart_of_accounts_coa_status, setChart_of_accounts_coa_status]   = useState('');
     const [chart_of_accounts_accounts_link_id, setChart_of_accounts_accounts_link_id]   = useState('');
     const [chart_of_accounts_status, setChart_of_accounts_status]           = useState(1);
+    const [chart_of_accouns_type, setChart_of_accounts_type]           = useState('');
     const [company, setCompany]                         = useState(user_company || '');
     const [status, setStatus]                           = useState('all');
     const [search, setSearch]                           = useState('');
@@ -96,6 +97,7 @@ const Chart_of_accounts = ()=> {
                     setChart_of_accounts_coa_status(coa_status);
                     setChart_of_accounts_accounts_link_id(result_data.data.chart_of_accounts_accounts_link_id);
                     setChart_of_accounts_status(result_data.data.chart_of_accounts_status);
+                    setChart_of_accounts_type(result_data.data.chart_of_accounts_accounts_type);
                 } else {
                     setChart_of_accounts_id(0);
                     setChart_of_accounts_company('');
@@ -151,10 +153,9 @@ const Chart_of_accounts = ()=> {
             chart_of_accounts_name: chart_of_accounts_name,
             chart_of_accounts_accounts_category: chart_of_accounts_accounts_category,
             chart_of_accounts_coa_status: chart_of_accounts_coa_status,
-            chart_of_accounts_accounts_link_id: chart_of_accounts_accounts_link_id,
             chart_of_accounts_status: chart_of_accounts_status
         }
-
+        // if(!!chart_of_accounts_accounts_link_id) formData["chart_of_accounts_accounts_link_id"] = chart_of_accounts_accounts_link_id
         let axios;
         if(chart_of_accounts_id > 0) {
             axios = apiUrl.put("/chart-of-accounts/chart-of-accounts-update/"+chart_of_accounts_id,formData)
